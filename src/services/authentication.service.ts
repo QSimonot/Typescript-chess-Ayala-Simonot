@@ -28,12 +28,13 @@ export class AuthenticationService {
       var scopes; 
       if(username=="admin"){
         scopes={
-        "scopes": ["author:create","author:read","author:write","author:delete","book:create","book:read","book:write", "book:delete","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
+        "scopes": [
+          "author:create",
+          "author:read",
+          "author:write",
+          "author:delete",
+          ]
       }
-      }else if(username=="gerant"){
-        scopes={
-          "scopes": ["author:create","author:read","author:write","book:create","book:read","book:write","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
-        }
       }else if(username=="utilisateur"){
         scopes={
           "scopes": ["author:read","book:create","book:read","bookcollection:read"]

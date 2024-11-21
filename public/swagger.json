@@ -18,12 +18,17 @@
 					},
 					"password": {
 						"type": "string"
+					},
+					"elo": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
 					"id",
 					"username",
-					"password"
+					"password",
+					"elo"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -35,11 +40,16 @@
 					},
 					"password": {
 						"type": "string"
+					},
+					"elo": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
 					"username",
-					"password"
+					"password",
+					"elo"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -51,8 +61,15 @@
 					},
 					"password": {
 						"type": "string"
+					},
+					"elo": {
+						"type": "number",
+						"format": "double"
 					}
 				},
+				"required": [
+					"elo"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},

@@ -58,7 +58,7 @@ export class UserController extends Controller {
     @Path() id: number,
     @Body() requestBody: UserInputPatchDTO,
   ): Promise<UserOutputDTO> {
-    const { username, password } = requestBody;
-    return userService.updateUser(id, username, password);
+    const { username, password ,elo} = requestBody;
+    return userService.updateUser(id, username, password,elo);
   }
 }
