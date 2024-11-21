@@ -1,14 +1,16 @@
 import { GameOutputDTO } from "./game.dto";
 
 export interface MoveInputDTO {
-  moves: string;
+  id:number;
+  move: string;
 }
 
 export interface MoveInputPatchDTO {
-  moves?: string;
+  id?:number;
+  move?: string;
 }
 
 export interface MoveOutputDTO {
   id: GameOutputDTO;
-  moves: string;
+  move: string;
 }

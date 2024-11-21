@@ -28,19 +28,15 @@ export class AuthenticationService {
       var scopes; 
       if(username=="admin"){
         scopes={
-        "scopes": ["author:create","author:read","author:write","author:delete","book:create","book:read","book:write", "book:delete","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
+      "scopes": ["game:create","game:read","game:write","game:delete"]
       }
-      }else if(username=="gerant"){
+      }else if(username=="user"){
         scopes={
-          "scopes": ["author:create","author:read","author:write","book:create","book:read","book:write","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
-        }
-      }else if(username=="utilisateur"){
-        scopes={
-          "scopes": ["author:read","book:create","book:read","bookcollection:read"]
+          "scopes": ["game:read","game:create","game:write"]
         }
       }
 
-      const token = jwt.sign({ username: user.username }, JWT_SECRET, {
+      const token = jwt.sign({ username: user.username, scopes:scopes }, JWT_SECRET, {
         expiresIn: "1h",
       });
       return token;

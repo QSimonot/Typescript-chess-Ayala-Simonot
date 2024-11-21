@@ -11,7 +11,7 @@ export class GameMapper {
       black: Game.black,
       date: Game.date,
       winner: Game.winner,
-      private: Game.private,
+      hidden: Game.hidden,
       ranked: Game.ranked,
 
     };
@@ -23,7 +23,6 @@ export class GameMapper {
         GameDto.black = await userService.getUserById(Game.black_id);
     }
     if (GameDto.winner === undefined) {
-        GameDto.winner = await userService.getUserById(Game.winner_id);
     }
 
     return GameDto;

@@ -1,57 +1,54 @@
 import { ForeignKeyConstraintError } from "sequelize";
-import { BookOutputDTO } from "../dto/book.dto";
-import { BookCollectionOutputDTO } from "../dto/bookCollection.dto";
+import { GameOutputDTO } from "../dto/game.dto";
 import { notFound } from "../error/NotFoundError";
-import { BookMapper } from "../mapper/book.mapper";
-import { BookCollectionMapper } from "../mapper/bookCollection.mapper";
-import { Author } from "../models/author.model";
-import { Book } from "../models/book.model";
-import { BookCollection } from "../models/bookCollection.model";
+import { GameMapper } from "../mapper/game.mapper";
 import { User } from "../models/user.model";
+import { Game } from "../models/game.model";
 
 export class GameService {
   readonly includeUser = {
     include: [
-      {
-        model: User,
-        as: "user",
-      },
+      { model: User, as: "black" },  // Jeux où l'utilisateur est le joueur noir
+      { model: User, as: "white" },  // Jeux où l'utilisateur est le joueur blanc
+      { model: User, as: "winner" }, // Jeux où l'utilisateur est le gagnant
     ],
   };
-  public async getAllGame(): Promise<BookOutputDTO[]> {
-    let books = await Book.findAll(this.includeUser);
+  public async getAllGame(): Promise<GameOutputDTO[]> {
+    let games = await Game.findAll(this.includeUser);
 
-    return BookMapper.toOutputDtoList(books);
+    return GameMapper.toOutputDtoList(games);
   }
 
-  public async getGameById(id: number): Promise<BookOutputDTO> {
-    let book = await Book.findByPk(id, this.includeUser);
+  public async getGameById(id: number): Promise<GameOutputDTO> {
+    let game = await Game.findByPk(id, this.includeUser);
 
-    if (book) {
-      return BookMapper.toOutputDto(book);
+    if (game) {
+      return GameMapper.toOutputDto(game);
     } else {
-      notFound("Book");
+      notFound("Game");
     }
   }
 
   public async createGame(
-    title: string,
-    publishYear: number,
-    authorId: number,
-    isbn: string,
-  ): Promise<BookOutputDTO> {
+    black_id: number,
+    white_id: number,
+    date: Date,
+    hidden: boolean,
+    ranked:boolean,
+  ): Promise<GameOutputDTO> {
     try {
-      let book = await Book.create({
-        title: title,
-        publish_year: publishYear,
-        isbn: isbn,
-        author_id: authorId,
+      let game = await Game.create({
+        black_id,
+        white_id,
+        date,
+        winner_id:undefined,
+        hidden,
+        ranked,
       });
-
-      return BookMapper.toOutputDto(book);
+      return GameMapper.toOutputDto(game);
     } catch (err) {
       if (err instanceof ForeignKeyConstraintError) {
-        throw notFound("Author");
+        throw notFound("Game");
       }
       throw err;
     }
@@ -59,68 +56,46 @@ export class GameService {
 
   public async updateGame(
     id: number,
-    title?: string,
-    publishYear?: number,
-    authorId?: number,
-    isbn?: string,
-  ): Promise<BookOutputDTO> {
-    const book = await Book.findByPk(id);
-    if (book) {
-      if (title !== undefined) book.title = title;
-      if (publishYear != undefined) book.publish_year = publishYear;
-      if (authorId !== undefined) book.author_id = authorId;
-      if (isbn !== undefined) book.isbn = isbn;
+    white_id?: number,
+    black_id?: number,
+    date?: Date,
+    winner?: number | undefined,
+    hidden?:boolean,
+    ranked?:boolean,
+
+  ): Promise<GameOutputDTO> {
+    const game = await Game.findByPk(id);
+    if (game) {
+      if (id !== undefined) game.id = id;
+      if (white_id != undefined) game.white_id = white_id;
+      if (black_id !== undefined) game.black_id = black_id;
+      if (date !== undefined) game.date = date;
+      if (winner !== undefined) game.winner_id = winner;
+      if (hidden !== undefined) game.hidden = hidden;
+      if (ranked !== undefined) game.ranked = ranked;
+
       try {
-        await book.save();
+        await game.save();
       } catch (err) {
         if (err instanceof ForeignKeyConstraintError) {
-          throw notFound("Author");
+          throw notFound("Game");
         }
         throw err;
       }
-      return BookMapper.toOutputDto(book);
+      return GameMapper.toOutputDto(game);
     } else {
-      notFound("Book");
+      notFound("Game");
     }
   }
 
-  public async deleteBook(id: number): Promise<void> {
-    const book = await Book.findByPk(id, {
-      include: [
-        {
-          model: BookCollection,
-          as: "collections",
-        },
-      ],
-    });
-    if (book) {
-      if (book.collections.length > 0) {
-        const error = new Error(
-          "Deletion of book " +
-            id +
-            " isn't possible due to presence of his.er books in library",
-        );
-        (error as any).status = 412;
-        throw error;
-      } else {
-        book.destroy();
-      }
+  public async deleteGame(id: number): Promise<void> {
+    const game = await Game.findByPk(id);
+    if (game) {
+        game.destroy();
     } else {
-      notFound("Book");
+      notFound("Game");
     }
-  }
-
-  public async getBookCollectionsByBookId(
-    id: number,
-  ): Promise<BookCollectionOutputDTO[]> {
-    return BookCollectionMapper.toOutputDtoList(
-      await BookCollection.findAll({
-        where: {
-          book_id: id,
-        },
-      }),
-    );
   }
 }
+export const gameService = new GameService();
 
-export const bookService = new BookService();

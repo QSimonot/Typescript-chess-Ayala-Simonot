@@ -1,0 +1,2 @@
+Pour l'autentification, le grant_type doit être égal à password.
+Une fois le token obtenu, mettre "Bearer token" dans le authorize 
