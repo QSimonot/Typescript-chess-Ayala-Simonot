@@ -1,5 +1,5 @@
 import type { User } from '@/model/User.model';
-import { useUserApi } from './userApi';
+import { getUser, useUserApi } from './userApi';
 
 const userApi = useUserApi();
 export function useUserService() {

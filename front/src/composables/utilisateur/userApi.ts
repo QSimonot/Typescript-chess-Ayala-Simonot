@@ -17,11 +17,12 @@ function useUserApi(user: User) {
   return res;
 }
 
-function example(){
-
+async function getUser(id:number){
+  const res = await axiosInstance.get<{ user: User }>(`${ApiUrlConnection}`);
+  return res.data.user;
 }
 
 export{
   useUserApi,
-  example,
+  getUser,
 }
