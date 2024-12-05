@@ -6,9 +6,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useUserService } from '../composables/utilisateur/userService';
-const user = 'paolo';
+import { onMounted, ref } from 'vue';
+import { getMyUserPlease } from '../composables/utilisateur/userService';
+import type { User } from '@/model/User.model';
+const user = ref<User>();
 
+onMounted(
+  async()=>{
+    user.value = await getMyUserPlease();
+  }
+)
 
 </script>

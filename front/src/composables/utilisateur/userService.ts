@@ -1,12 +1,10 @@
 import type { User } from '@/model/User.model';
-import { getUser, useUserApi } from './userApi';
+import { getUser } from './userApi';
 
-const userApi = useUserApi();
-export function useUserService() {
-  return {
-    async authenticate(user: User): Promise<User> {
-      user.token = await userApi.authenticate(user);
-      return user;
-    },
-  };
+async function getMyUserPlease(){
+  const getMyUser = await getUser(2);
+  return getMyUser;
+}
+export{
+  getMyUserPlease,
 }

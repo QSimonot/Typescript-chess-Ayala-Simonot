@@ -1,5 +1,5 @@
 import axiosInstance from '@/config/AxiosConfig';
-import { ApiUrlConnection } from '@/constants/ApiUrl';
+import { ApiUrlConnection, ApiGetUser } from '@/constants/ApiUrl';
 import type { User } from '@/model/User.model';
 
 
@@ -18,7 +18,7 @@ function useUserApi(user: User) {
 }
 
 async function getUser(id:number){
-  const res = await axiosInstance.get<{ user: User }>(`${ApiUrlConnection}`);
+  const res = await axiosInstance.get<{ user: User }>(`${ApiGetUser}${id}`);
   return res.data.user;
 }
 
