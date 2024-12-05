@@ -1,6 +1,7 @@
 import { UserOutputDTO } from "../dto/user.dto";
 import { notFound } from "../error/NotFoundError";
 import { UserMapper } from "../mapper/user.mapper";
+import { Game } from "../models/game.model";
 import { User } from "../models/user.model";
 
 export class UserService {
@@ -19,6 +20,8 @@ export class UserService {
       notFound("User");
     }
   }
+
+    
 
   // Crée un nouvel utilisateur
   public async createUser(

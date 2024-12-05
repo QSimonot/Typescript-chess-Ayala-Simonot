@@ -4,6 +4,7 @@ import { notFound } from "../error/NotFoundError";
 import { GameMapper } from "../mapper/game.mapper";
 import { User } from "../models/user.model";
 import { Game } from "../models/game.model";
+import { Op } from "sequelize";
 
 export class GameService {
   readonly includeUser = {
@@ -96,6 +97,38 @@ export class GameService {
       notFound("Game");
     }
   }
+
+  // Récupère un utilisateur par ID
+  public async getUserGame(user: number): Promise<GameOutputDTO[]> {
+    
+    const game = await Game.findAll({
+      include: [
+        {
+          model: User,
+          as: 'white', // Alias for the white player
+          where: { id: user }, // Filter for user1 with id 2
+          required: false // LEFT JOIN
+        },
+        {
+          model: User,
+          as: 'black', // Alias for the black player
+          required: false // LEFT JOIN
+        }
+      ]
+      });
+
+
+    console.log(game);
+    
+    if (game) {
+      return GameMapper.toOutputDtoList(game);
+    } else {
+      notFound("User");
+    }
+  }
 }
+
+
+
 export const gameService = new GameService();
 

@@ -16,6 +16,7 @@ import {
     GameOutputDTO,
   } from "../dto/game.dto";
 import { gameService } from "../services/game.service";
+import { userService } from "../services/user.service";
   
 @Route("game")
 @Tags("Games")
@@ -31,6 +32,12 @@ export class GameController extends Controller {
     @Security("jwt",["game:read"])
     public async getGame(@Path("id") id: number): Promise<GameOutputDTO> {
       return await gameService.getGameById(id);
+    }
+
+    @Get("/user/{id}")
+    @Security("jwt",["game:read"])
+    public async getGameOfUser(@Path("id") id: number): Promise<GameOutputDTO[]> {
+      return await gameService.getUserGame(id);
     }
   
     @Post("/")

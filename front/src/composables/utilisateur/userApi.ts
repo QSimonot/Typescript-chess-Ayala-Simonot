@@ -15,7 +15,6 @@ async function authenticate(user: User): Promise<string> {
 
 async function getUser(id:number){
   const res = await axiosInstance.get<{ user: User }>(`${ApiGetUser}${id}`);
-  console.log(res.data);
   return res.data;
 }
 
