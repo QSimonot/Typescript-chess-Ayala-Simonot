@@ -1,4 +1,6 @@
-/build/*
-/node_modules/*
-chess.sqlite
-chess.db
+/backend/build/*
+/backend/node_modules/*
+/backend/chess.sqlite
+/backend/chess.db
+
+/front/node_modules/*

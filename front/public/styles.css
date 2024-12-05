@@ -1,0 +1,16 @@
+.white{
+    background-color: white;
+}
+
+.board{
+    color: rgb(0, 30, 255);
+    display: grid; 
+    grid-template-columns: repeat(8,40px); 
+    grid-template-rows: repeat(8,40px);
+}
+
+.cell{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
