@@ -1,6 +1,8 @@
 <template>
   <button @click="startgame()">Next</button>
 
+  <userVue></userVue>
+
   <Chessboard></Chessboard>
   <p>{{ currentMove }}</p>
   <button @click="nextMove()">Next</button>
@@ -9,6 +11,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Chessboard from './components/ChessBoard.vue';
+import userVue from './components/userVue.vue';
 
 
 
