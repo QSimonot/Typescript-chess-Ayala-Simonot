@@ -12,10 +12,6 @@ async function authenticate(user: User): Promise<string> {
   return res.data.token;
 }
 
-function useUserApi(user: User) {
-  const res = authenticate(user);
-  return res;
-}
 
 async function getUser(id:number){
   const res = await axiosInstance.get<{ user: User }>(`${ApiGetUser}${id}`);
@@ -23,6 +19,6 @@ async function getUser(id:number){
 }
 
 export{
-  useUserApi,
+  authenticate,
   getUser,
 }

@@ -6,6 +6,7 @@ const axiosInstance = axios.create({});
 
 axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.headers['Authorization'] = `Bearer ${userConnecte.value.token}`;
+  console.log(config);
   return config;
 });
 
