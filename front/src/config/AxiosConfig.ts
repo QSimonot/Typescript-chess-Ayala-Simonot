@@ -5,8 +5,10 @@ const { userConnecte } = useUserConnecteService();
 const axiosInstance = axios.create({});
 
 axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  if(sessionStorage.getItem("token") != null){
+    config.headers['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
+  }
   config.headers['Authorization'] = `Bearer ${userConnecte.value.token}`;
-  console.log(config);
   return config;
 });
 
