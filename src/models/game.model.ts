@@ -9,7 +9,7 @@ export interface GameAttributes {
     black_id: number;
     date:Date;
     winner_id?:number;
-    private:boolean;
+    hidden:boolean;
     ranked:boolean;
 
 }
@@ -20,7 +20,7 @@ export class Game extends Model<GameAttributes> implements GameAttributes {
   public black_id!: number;
   public date!: Date;
   public winner_id!: number;
-  public private!: boolean;
+  public hidden!: boolean;
   public ranked!: boolean;
   public white!:User;
   public black!:User;
@@ -50,7 +50,7 @@ Game.init(
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    private: {
+    hidden: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
@@ -65,9 +65,9 @@ Game.init(
   },
 );
 
-Game.belongsTo(User, { foreignKey: "black_id", as: "black_game" });
-Game.belongsTo(User, { foreignKey: "white_id", as: "white_game" });
-Game.belongsTo(User, { foreignKey: "winner_id", as: "winner_game" });
+Game.belongsTo(User, { foreignKey: "black_id", as: "black" });
+Game.belongsTo(User, { foreignKey: "white_id", as: "white" });
+Game.belongsTo(User, { foreignKey: "winner_id", as: "winner" });
 
 
 User.hasMany(Game, { sourceKey: "id", foreignKey: "black_id", as: "black" });

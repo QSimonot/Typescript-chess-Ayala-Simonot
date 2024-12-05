@@ -2,3 +2,5 @@
 /node_modules/*
 chess.sqlite
 chess.db
+
+chess.sqlite

@@ -10,7 +10,7 @@ export class AuthenticationController extends Controller {
   ) {
     const { grant_type, username, password } = body;
     if (grant_type !== "password") {
-      let error = new Error("Invalid grant_type");
+      let error = new Error("Invalid grant type doit être égal à password");
       (error as any).status = 400;
       throw error;
     }

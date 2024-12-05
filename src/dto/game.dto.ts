@@ -1,4 +1,3 @@
-import { DateDataType } from "sequelize";
 import { UserOutputDTO } from "./user.dto";
 
 export interface GameInputDTO {
@@ -6,7 +5,7 @@ export interface GameInputDTO {
   black_id: number;
   date:Date;
   winner:number;
-  private:boolean;
+  hidden:boolean;
   ranked:boolean;
 }
 
@@ -15,7 +14,7 @@ export interface GameInputPatchDTO {
   black?: number;
   date?:Date;
   winner_id?:number;
-  private?:boolean;
+  hidden?:boolean;
   ranked?:boolean;
 }
 
@@ -25,6 +24,6 @@ export interface GameOutputDTO {
   black: UserOutputDTO;
   date:Date;
   winner:UserOutputDTO;
-  private:boolean;
+  hidden:boolean;
   ranked:boolean;
 }

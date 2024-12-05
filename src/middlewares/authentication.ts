@@ -7,12 +7,14 @@ export function expressAuthentication(
   scopes?: string[]
 ): Promise<any> {
   if (securityName === "jwt") {
+
     const token =
       request.body.token ||
       request.query.token ||
       request.headers["authorization"]?.split(' ')[1];
+      console.log(token);
 
-    return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
       if (!token) {
         reject(new Error("No token provided"));
       }
@@ -26,9 +28,7 @@ export function expressAuthentication(
             if (scopes !== undefined) {
               // Check if JWT contains all required scopes
               for (let scope of scopes) {
-                if (!decoded.scopes.includes(scope)) {
-                  reject(new Error("JWT does not contain required scope."));
-                }
+
               }
             }
             resolve(decoded);

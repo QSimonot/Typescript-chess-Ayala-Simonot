@@ -74,6 +74,7 @@
 				"additionalProperties": false
 			},
 			"GameOutputDTO": {
+			"GameOutputDTO": {
 				"properties": {
 					"id": {
 						"type": "number",
@@ -218,196 +219,143 @@
 						"type": "number",
 						"format": "double"
 					},
-					"first_name": {
-						"type": "string"
+					"white": {
+						"$ref": "#/components/schemas/UserOutputDTO"
 					},
-					"last_name": {
+					"black": {
+						"$ref": "#/components/schemas/UserOutputDTO"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"winner": {
+						"$ref": "#/components/schemas/UserOutputDTO"
+					},
+					"hidden": {
+						"type": "boolean"
+					},
+					"ranked": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"id",
+					"white",
+					"black",
+					"date",
+					"winner",
+					"hidden",
+					"ranked"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"MoveOutputDTO": {
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/GameOutputDTO"
+					},
+					"move": {
 						"type": "string"
 					}
 				},
 				"required": [
 					"id",
-					"first_name",
-					"last_name"
+					"move"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"BookOutputDTO": {
+			"MoveInputDTO": {
 				"properties": {
 					"id": {
 						"type": "number",
 						"format": "double"
 					},
-					"title": {
+					"move": {
 						"type": "string"
-					},
-					"publish_year": {
-						"type": "number",
-						"format": "double"
-					},
-					"isbn": {
-						"type": "string"
-					},
-					"author": {
-						"$ref": "#/components/schemas/AuthorOutputDTO"
 					}
 				},
 				"required": [
 					"id",
-					"title",
-					"publish_year",
-					"isbn",
-					"author"
+					"move"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"State": {
-				"enum": [
-					"Inutilisable",
-					"Mauvais",
-					"Passable",
-					"Bon",
-					"Très bon",
-					"Neuf"
-				],
-				"type": "string"
-			},
-			"BookCollectionOutputDTO": {
+			"MoveInputPatchDTO": {
 				"properties": {
 					"id": {
 						"type": "number",
 						"format": "double"
 					},
-					"book": {
-						"$ref": "#/components/schemas/BookOutputDTO"
-					},
-					"available": {
+					"move": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GameInputDTO": {
+				"properties": {
+					"white_id": {
 						"type": "number",
 						"format": "double"
 					},
-					"state": {
-						"$ref": "#/components/schemas/State"
+					"black_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"winner": {
+						"type": "number",
+						"format": "double"
+					},
+					"hidden": {
+						"type": "boolean"
+					},
+					"ranked": {
+						"type": "boolean"
 					}
 				},
 				"required": [
-					"id",
-					"book",
-					"available",
-					"state"
+					"white_id",
+					"black_id",
+					"date",
+					"winner",
+					"hidden",
+					"ranked"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"BookCollectionInputDTO": {
+			"GameInputPatchDTO": {
 				"properties": {
-					"book_id": {
+					"white": {
 						"type": "number",
 						"format": "double"
 					},
-					"available": {
+					"black": {
 						"type": "number",
 						"format": "double"
 					},
-					"state": {
-						"$ref": "#/components/schemas/State"
-					}
-				},
-				"required": [
-					"book_id",
-					"available",
-					"state"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"BookCollectionInputPatchDTO": {
-				"properties": {
-					"book_id": {
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"winner_id": {
 						"type": "number",
 						"format": "double"
 					},
-					"available": {
-						"type": "number",
-						"format": "double"
+					"hidden": {
+						"type": "boolean"
 					},
-					"state": {
-						"$ref": "#/components/schemas/State"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"BookInputDTO": {
-				"properties": {
-					"title": {
-						"type": "string"
-					},
-					"publish_year": {
-						"type": "number",
-						"format": "double"
-					},
-					"author_id": {
-						"type": "number",
-						"format": "double"
-					},
-					"isbn": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"title",
-					"publish_year",
-					"author_id",
-					"isbn"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"BookInputPatchDTO": {
-				"properties": {
-					"title": {
-						"type": "string"
-					},
-					"publish_year": {
-						"type": "number",
-						"format": "double"
-					},
-					"author_id": {
-						"type": "number",
-						"format": "double"
-					},
-					"isbn": {
-						"type": "string"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"AuthorInputDTO": {
-				"properties": {
-					"first_name": {
-						"type": "string"
-					},
-					"last_name": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"first_name",
-					"last_name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"AuthorInputPatchDTO": {
-				"properties": {
-					"first_name": {
-						"type": "string"
-					},
-					"last_name": {
-						"type": "string"
+					"ranked": {
+						"type": "boolean"
 					}
 				},
 				"type": "object",
@@ -621,6 +569,7 @@
 				}
 			}
 		},
+		"/move": {
 		"/move": {
 			"get": {
 				"operationId": "GetAllMoves",
@@ -973,7 +922,7 @@
 		},
 		"/book-collections": {
 			"get": {
-				"operationId": "GetAllBooksCollection",
+				"operationId": "GetAllMoves",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -981,7 +930,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/BookCollectionOutputDTO"
+										"$ref": "#/components/schemas/MoveOutputDTO"
 									},
 									"type": "array"
 								}
@@ -990,38 +939,208 @@
 					}
 				},
 				"tags": [
-					"BookCollections"
+					"Move"
 				],
 				"security": [
 					{
-						"jwt": [
-							"bookcollection:read"
-						]
+						"jwt": []
 					}
 				],
 				"parameters": []
 			},
 			"post": {
-				"operationId": "PostBookCollection",
+				"operationId": "CreateMove",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/BookCollectionOutputDTO"
+									"$ref": "#/components/schemas/MoveOutputDTO"
 								}
 							}
 						}
 					}
 				},
 				"tags": [
-					"BookCollections"
+					"Move"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MoveInputDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/move/{id}": {
+			"get": {
+				"operationId": "GetMoveById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MoveOutputDTO"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Move"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteMove",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Move"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateMove",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MoveOutputDTO"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Move"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MoveInputPatchDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/game": {
+			"get": {
+				"operationId": "GetAllGames",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/GameOutputDTO"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Games"
 				],
 				"security": [
 					{
 						"jwt": [
-							"bookcollection:create"
+							"game:read"
+						]
+					}
+				],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "PostGame",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GameOutputDTO"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Games"
+				],
+				"security": [
+					{
+						"jwt": [
+							"game:create"
 						]
 					}
 				],
@@ -1031,35 +1150,35 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/BookCollectionInputDTO"
+								"$ref": "#/components/schemas/GameInputDTO"
 							}
 						}
 					}
 				}
 			}
 		},
-		"/book-collections/{id}": {
+		"/game/{id}": {
 			"get": {
-				"operationId": "GetBookCollection",
+				"operationId": "GetGame",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/BookCollectionOutputDTO"
+									"$ref": "#/components/schemas/GameOutputDTO"
 								}
 							}
 						}
 					}
 				},
 				"tags": [
-					"BookCollections"
+					"Games"
 				],
 				"security": [
 					{
 						"jwt": [
-							"bookcollection:read"
+							"game:read"
 						]
 					}
 				],
@@ -1076,26 +1195,26 @@
 				]
 			},
 			"patch": {
-				"operationId": "PatchBookCollection",
+				"operationId": "PatchGame",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/BookCollectionOutputDTO"
+									"$ref": "#/components/schemas/GameOutputDTO"
 								}
 							}
 						}
 					}
 				},
 				"tags": [
-					"BookCollections"
+					"Games"
 				],
 				"security": [
 					{
 						"jwt": [
-							"bookcollection:write"
+							"game:write"
 						]
 					}
 				],
@@ -1115,468 +1234,26 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/BookCollectionInputPatchDTO"
+								"$ref": "#/components/schemas/GameInputPatchDTO"
 							}
 						}
 					}
 				}
 			},
 			"delete": {
-				"operationId": "DeleteBookCollection",
+				"operationId": "DeleteGame",
 				"responses": {
 					"204": {
 						"description": "No content"
 					}
 				},
 				"tags": [
-					"BookCollections"
+					"Games"
 				],
 				"security": [
 					{
 						"jwt": [
-							"bookcollection:delete"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			}
-		},
-		"/books": {
-			"get": {
-				"operationId": "GetAllBooks",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/BookOutputDTO"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:read"
-						]
-					}
-				],
-				"parameters": []
-			},
-			"post": {
-				"operationId": "PostBooks",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BookOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:create"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/BookInputDTO"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/books/{id}": {
-			"get": {
-				"operationId": "GetBook",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BookOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:read"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "PatchBook",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/BookOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:write"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/BookInputPatchDTO"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "DeleteBook",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:delete"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			}
-		},
-		"/books/{id}/book-collections": {
-			"get": {
-				"operationId": "GetBookCollectionsByBookId",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/BookCollectionOutputDTO"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Books"
-				],
-				"security": [
-					{
-						"jwt": [
-							"book:read"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			}
-		},
-		"/authors": {
-			"get": {
-				"operationId": "GetAllAuthors",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/AuthorOutputDTO"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:read"
-						]
-					}
-				],
-				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateAuthor",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AuthorOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:create"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuthorInputDTO"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/authors/{id}": {
-			"get": {
-				"operationId": "GetAuthorById",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AuthorOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:read"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			},
-			"delete": {
-				"operationId": "DeleteAuthor",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:delete"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateAuthor",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AuthorOutputDTO"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:write"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuthorInputPatchDTO"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/authors/{id}/books": {
-			"get": {
-				"operationId": "GetBooksByAuthorId",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/BookOutputDTO"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Authors"
-				],
-				"security": [
-					{
-						"jwt": [
-							"author:read"
+							"game:delete"
 						]
 					}
 				],
