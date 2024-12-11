@@ -1,12 +1,24 @@
+body{
+    background-color: #2B2129;
+}
+
 .white{
-    background-color: white;
+    background-color: #C2956E;
+}
+
+.black{
+    background-color: #E5D1B8;
+}
+
+.selected{
+    background-color: red;
 }
 
 .board{
     color: rgb(0, 30, 255);
     display: grid; 
-    grid-template-columns: repeat(8,40px); 
-    grid-template-rows: repeat(8,40px);
+    grid-template-columns: repeat(8,90px); 
+    grid-template-rows: repeat(8,90px);
 }
 
 .cell{
