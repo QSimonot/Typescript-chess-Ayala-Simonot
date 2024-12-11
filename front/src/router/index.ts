@@ -9,7 +9,7 @@ const routes = [
   { path: '/', redirect: '/authors' },
   { path: '/connect',name:'login', component: AuthenticationPage },
   {path: '/chessboard/:game',name:'Chessboard', component: chessboard},
-  {path: '/gamelist', component: SelectGame},
+  {path: '/gamelist', name:'Gameliste', component: SelectGame},
 
 ];
 // { path: '/authors', component: AuthorList },

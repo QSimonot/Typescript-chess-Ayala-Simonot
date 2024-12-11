@@ -1,8 +1,19 @@
 import axiosInstance from '@/config/AxiosConfig';
-import { ApiGetGameOfUser } from '@/constants/ApiUrl';
+import { ApiGetGameOfUser,ApiPostNewGame } from '@/constants/ApiUrl';
 import type { Game } from '@/model/Game.model';
 
 
+async function createGame(white:number, black:number, date:Date,hidden:boolean, ranked:boolean): Promise<number> {
+  const res = await axiosInstance.post<{ }>(`${ApiPostNewGame}`, {
+    white_id: white,
+    black_id: black,
+    date:date.getDate(),
+    winner: -1,
+    hidden:hidden,
+    ranked:ranked
+  });
+  return res.status;
+}
 
 
 async function getGameOfUser(id:number){
@@ -12,4 +23,5 @@ async function getGameOfUser(id:number){
 
 export{
     getGameOfUser,
+    createGame,
 }

@@ -26,3 +26,43 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.btn-liste-game{
+    display: flex;
+    flex-direction: row;
+    background: #E5D1B8;
+    border: 1px solid #C2956E;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.img-div-players-liste-game{
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-div-players-liste-game p{
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.img-liste-game{
+    width: 35%;
+    height: 35%;
+}
+
+.p-date-liste-game{
+    color: black;
+    position:relative;
+    top:117px;
+    right: 10px;
+}
+
+.div-winner-liste-game{
+    color: black;
+    display: flex;
+    align-items: center;
+}

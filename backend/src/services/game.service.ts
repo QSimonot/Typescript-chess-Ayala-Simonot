@@ -106,14 +106,23 @@ export class GameService {
         {
           model: User,
           as: 'white', // Alias for the white player
-          where: { id: user }, // Filter for user1 with id 2
         },
         {
           model: User,
           as: 'black', // Alias for the black player
+        },
+        {
+          model: User,
+          as: 'winner', // Alias for the black player
         }
-      ]
-      });
+      ],
+      where: {
+        [Op.or]: [
+          { white_id: user },
+          { black_id: user }
+        ]
+      }
+    });
     
     if (game) {
       return GameMapper.toOutputDtoList(game);
