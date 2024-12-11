@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 // import AuthorList from '@/views/AuthorList.vue';
 import AuthenticationPage from '@/views/authentication/AuthenticationPage.vue';
-import chessboard from '@/views/chessboard.vue';
+import chessboard from '@/views/Game.vue';
 
 const routes = [
   { path: '/', redirect: '/authors' },
@@ -9,7 +9,7 @@ const routes = [
   {path: '/chessboard', component: chessboard},
 ];
 // { path: '/authors', component: AuthorList },
-// 
+//
 const router = createRouter({
   history: createWebHistory(),
   routes,
