@@ -17,26 +17,26 @@ import {
     MoveOutputDTO,
   } from "../dto/move.dto";
   
-  @Route("move")
+  @Route("moves")
   @Tags("Move")
   export class MoveController extends Controller {
     // Récupère tous les utilisateurs
     @Get("/")
-    @Security("jwt")
+    @Security("jwt",["game:read"])
     public async getAllMoves(): Promise<MoveOutputDTO[]> {
       return moveService.getAllMoves();
     }
   
-    // Récupère un utilisateur par ID
+    // Récupère un move par ID
     @Get("{id}")
-    @Security("jwt")
+    @Security("jwt",["game:read"])
     public async getMoveById(@Path() id: number): Promise<MoveOutputDTO> {
       return moveService.getMoveById(id);
     }
   
     // Crée un nouvel utilisateur
     @Post("/")
-    @Security("jwt")
+    @Security("jwt",["game:create"])
     public async createMove(
       @Body() requestBody: MoveInputDTO,
     ): Promise<MoveOutputDTO> {
@@ -46,14 +46,14 @@ import {
   
     // Supprime un utilisateur par ID
     @Delete("{id}")
-    @Security("jwt")
+    @Security("jwt",["game:delete"])
     public async deleteMove(@Path() id: number): Promise<void> {
       await moveService.deleteMove(id);
     }
   
     // Met à jour un utilisateur par ID
     @Patch("{id}")
-    @Security("jwt")
+    @Security("jwt",["game:create"])
     public async updateMove(
       @Path() id: number,
       @Body() requestBody: MoveInputPatchDTO,

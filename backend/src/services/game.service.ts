@@ -116,9 +116,6 @@ export class GameService {
         }
       ]
       });
-
-
-    console.log(game);
     
     if (game) {
       return GameMapper.toOutputDtoList(game);

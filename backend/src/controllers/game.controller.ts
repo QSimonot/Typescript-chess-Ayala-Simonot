@@ -18,7 +18,7 @@ import {
 import { gameService } from "../services/game.service";
 import { userService } from "../services/user.service";
   
-@Route("game")
+@Route("games")
 @Tags("Games")
 export class GameController extends Controller {
 

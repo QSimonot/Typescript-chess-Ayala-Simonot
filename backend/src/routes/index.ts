@@ -302,7 +302,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/move',
-            authenticateMiddleware([{"jwt":[]}]),
+            authenticateMiddleware([{"jwt":["game:read"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.getAllMoves)),
 
@@ -332,7 +332,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.get('/move/:id',
-            authenticateMiddleware([{"jwt":[]}]),
+            authenticateMiddleware([{"jwt":["game:read"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.getMoveById)),
 
@@ -363,7 +363,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/move',
-            authenticateMiddleware([{"jwt":[]}]),
+            authenticateMiddleware([{"jwt":["game:create"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.createMove)),
 
@@ -394,7 +394,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.delete('/move/:id',
-            authenticateMiddleware([{"jwt":[]}]),
+            authenticateMiddleware([{"jwt":["game:delete"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.deleteMove)),
 
@@ -425,7 +425,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.patch('/move/:id',
-            authenticateMiddleware([{"jwt":[]}]),
+            authenticateMiddleware([{"jwt":["game:create"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.updateMove)),
 

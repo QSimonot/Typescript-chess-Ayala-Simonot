@@ -5,23 +5,23 @@ import { Game } from "../models/game.model";
 import { Move } from "../models/move.model";
 
 export class MoveService {
-    readonly includeAuthor = {
+    readonly includeGame = {
         include: [
             {
             model: Game,
-            as: "Game",
+            as: "id_game",
             },
         ],
         };
   // Récupère tous les utilisateurs
   public async getAllMoves(): Promise<MoveOutputDTO[]> {
-    let moveList = await Move.findAll();
+    let moveList = await Move.findAll(this.includeGame);
     return MoveMapper.toOutputDtoList(moveList);
   }
 
   // Récupère un move par ID
-  public async getMoveById(id: number): Promise<MoveOutputDTO> {
-    let move = await Move.findByPk(id);
+  public async getMoveById(game: number): Promise<MoveOutputDTO> {
+    let move = await Move.findByPk(game, this.includeGame);
     if (move) {
       return MoveMapper.toOutputDto(move);
     } else {

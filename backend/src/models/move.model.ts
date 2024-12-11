@@ -37,7 +37,7 @@ Move.init(
   },
 );
 
-Move.belongsTo(Game, { foreignKey: "id", as: "id_games" });
+Move.belongsTo(Game, { foreignKey: "id", as: "id_game" });
 
 
-Game.hasMany(Move, { sourceKey: "id", foreignKey: "id", as: "id_games" });
+Game.hasMany(Move, { sourceKey: "id", foreignKey: "id", as: "id_game" });
