@@ -12,7 +12,6 @@ export function expressAuthentication(
       request.body.token ||
       request.query.token ||
       request.headers["authorization"]?.split(' ')[1];
-      console.log(token);
 
       return new Promise((resolve, reject) => {
       if (!token) {

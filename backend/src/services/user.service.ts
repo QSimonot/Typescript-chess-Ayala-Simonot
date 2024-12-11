@@ -21,6 +21,20 @@ export class UserService {
     }
   }
 
+  public async getUserByName(name: string): Promise<UserOutputDTO> {
+    let user = await User.findOne({
+      where:
+        {
+          username : name
+        }
+    });
+    
+    if (user) {
+      return UserMapper.toOutputDto(user);
+    } else {
+      notFound("User");
+    }
+  }
     
 
   // Crée un nouvel utilisateur

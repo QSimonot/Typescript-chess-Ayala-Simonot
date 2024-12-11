@@ -14,7 +14,6 @@ const user = ref<User>();
 onMounted(
   async()=>{
     user.value = await getMyUserPlease();
-    console.log(user);
   }
 )
 

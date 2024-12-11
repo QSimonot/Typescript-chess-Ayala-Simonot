@@ -21,13 +21,13 @@ import router from '@/router';
 
 const { userConnecte } = useUserConnecteService();
 
-const user = ref<User>({ username: "", password: "" });
+const user = ref({ username: "", password: "" });
 const label = "Connect";
 
 
 async function getToken() {
     userConnecte.value = await useUserService(user.value);
-    sessionStorage.setItem('token', JSON.stringify(user.value.token));
-    router.push({path:'/chessboard'})
+    localStorage.setItem('user',JSON.stringify(user.value.username));
+    router.push({path:'/gamelist'})
 }
 </script>

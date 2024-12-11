@@ -34,6 +34,12 @@ export class UserController extends Controller {
     return userService.getUserById(id);
   }
 
+  @Get("/name/{name}")
+  @Security("jwt")
+  public async getUserByName(@Path() name: string): Promise<UserOutputDTO> {
+    return userService.getUserByName(name);
+  }
+
   // Crée un nouvel utilisateur
   @Post("/")
   @Security("jwt")

@@ -107,12 +107,10 @@ export class GameService {
           model: User,
           as: 'white', // Alias for the white player
           where: { id: user }, // Filter for user1 with id 2
-          required: false // LEFT JOIN
         },
         {
           model: User,
           as: 'black', // Alias for the black player
-          required: false // LEFT JOIN
         }
       ]
       });

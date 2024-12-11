@@ -1,8 +1,11 @@
+import type { User } from "./User.model";
+
 export interface Game {
-    white_id: number;
-    black_id: number;
+    id:number;
+    white: User;
+    black: User;
     date:Date;
-    winner?:number;
+    winner?:User;
     hidden:boolean;
     ranked:boolean;
   }

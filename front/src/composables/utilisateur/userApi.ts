@@ -13,8 +13,8 @@ async function authenticate(user: User): Promise<string> {
 }
 
 
-async function getUser(id:number){
-  const res = await axiosInstance.get<User>(`${ApiGetUser}${id}`);
+async function getUser(name:string){
+  const res = await axiosInstance.get<User>(`${ApiGetUser}${name}`);
   return res.data;
 }
 

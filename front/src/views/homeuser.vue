@@ -1,26 +1,13 @@
 <template>
-    <button @click="getGameOfUser()">reload</button>
 
-    <!-- <userVue></userVue> -->
+    <gameList></gameList>
      <p> userConnecte </p>
   </template>
   
   <script setup lang="ts">
   import { ref } from 'vue';
-  import { getApiGameOfUser } from '@/composables/game/gameService';
-  const userConnecte = getApiGameOfUser(2);
+  import gameList from '../components/SelectGame.vue';
 
-  
-  function startgame(){
-  }
-  
-  
-  function getGameOfUser(){
-
-
- }
-
- console.log(getApiGameOfUser(2));
- 
+   
   </script>
   
