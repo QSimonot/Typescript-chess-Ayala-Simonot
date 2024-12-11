@@ -66,3 +66,12 @@ body{
     display: flex;
     align-items: center;
 }
+
+.capturedPieces-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,30px);
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
