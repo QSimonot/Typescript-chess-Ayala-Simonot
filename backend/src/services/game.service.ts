@@ -89,6 +89,31 @@ export class GameService {
     }
   }
 
+  public async updateMove(
+    id: number,
+    move:string |undefined,
+
+  ): Promise<GameOutputDTO> {
+    const game = await Game.findByPk(id);
+    if (game) {
+      if (id !== undefined) game.id = id;
+      game.move = game.move + move;
+
+      try {
+        await game.save();
+      } catch (err) {
+        if (err instanceof ForeignKeyConstraintError) {
+          throw notFound("Game");
+        }
+        throw err;
+      }
+      return GameMapper.toOutputDto(game);
+    } else {
+      notFound("Game");
+    }
+  }
+
+
   public async deleteGame(id: number): Promise<void> {
     const game = await Game.findByPk(id);
     if (game) {

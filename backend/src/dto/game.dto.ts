@@ -7,6 +7,7 @@ export interface GameInputDTO {
   winner:number;
   hidden:boolean;
   ranked:boolean;
+  move: string;
 }
 
 export interface GameInputPatchDTO {
@@ -16,6 +17,7 @@ export interface GameInputPatchDTO {
   winner_id?:number;
   hidden?:boolean;
   ranked?:boolean;
+  move?: string;
 }
 
 export interface GameOutputDTO {
@@ -26,4 +28,5 @@ export interface GameOutputDTO {
   winner:UserOutputDTO;
   hidden:boolean;
   ranked:boolean;
+  move?: string;
 }

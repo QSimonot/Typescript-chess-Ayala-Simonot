@@ -28,7 +28,7 @@ export class GameController extends Controller {
         return gameService.getAllGame();
     }
   
-    @Get("{id}")
+    @Get("/{id}")
     @Security("jwt",["game:read"])
     public async getGame(@Path("id") id: number): Promise<GameOutputDTO> {
       return await gameService.getGameById(id);
@@ -40,7 +40,7 @@ export class GameController extends Controller {
       return await gameService.getUserGame(id);
     }
   
-    @Post("/")
+    @Post("/create/")
     @Security("jwt",["game:create"])
     public async postGame(
       @Body() requestBody: GameInputDTO,
@@ -76,6 +76,12 @@ export class GameController extends Controller {
     @Security("jwt",["game:delete"])
     public async deleteGame(@Path("id") id: number): Promise<void> {
       await gameService.deleteGame(id);
+    }
+
+    @Patch("/update/move/{id}")
+    @Security("jwt",["game:write"])
+    public async addMove(@Path("id") id:number, @Body() requestBody: GameInputPatchDTO):Promise<void> {
+      await gameService.updateMove(id, requestBody.move);
     }
   
 }

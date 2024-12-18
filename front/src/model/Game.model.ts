@@ -8,4 +8,5 @@ export interface Game {
     winner?:User;
     hidden:boolean;
     ranked:boolean;
+    move:string;
   }

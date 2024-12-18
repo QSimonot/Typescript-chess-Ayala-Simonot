@@ -7,6 +7,21 @@ async function getApiGameOfUser(id:number){
   return gameOfUser;
 }
 
+async function getMoveOfGame(id:number){
+  let  gameOfUser = await getGameOfUser(id);
+  return gameOfUser;
+}
+
+async function updateMove(id:number, move:string){
+  let  gameOfUser = await updateMove(id,move);
+  if(gameOfUser == 200){
+    return 200;
+  }else{
+    return 400;
+  }
+}
+
+
 async function createDefaultGame(name:string) :Promise<number>{
   const white = await getUser(name);
   const black = await getUser('default');

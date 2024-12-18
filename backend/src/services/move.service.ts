@@ -54,10 +54,11 @@ export class MoveService {
     id: number,
     move?: string | undefined
   ): Promise<MoveOutputDTO> {
-    const moves = await Move.findByPk(id);
+    let moves = await Move.findByPk(id);
+    
     if (moves) {
       if (moves) moves.id = id;
-      if (moves) moves.move = move || "";
+      if (moves) moves.move = moves.move + move || "";
 
       await moves.save();
       return MoveMapper.toOutputDto(moves);

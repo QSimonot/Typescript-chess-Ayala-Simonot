@@ -11,6 +11,7 @@ export interface GameAttributes {
     winner_id?:number;
     hidden:boolean;
     ranked:boolean;
+    move?: string;
 
 }
 
@@ -25,6 +26,7 @@ export class Game extends Model<GameAttributes> implements GameAttributes {
   public white!:User;
   public black!:User;
   public winner!:User;
+  public move!: string;
 }
 
 Game.init(
@@ -58,6 +60,10 @@ Game.init(
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
+    move: {
+      type: DataTypes.STRING,
+      allowNull: true,
+  },
   },
   {
     sequelize,

@@ -52,7 +52,7 @@ import {
     }
   
     // Met à jour un utilisateur par ID
-    @Patch("{id}")
+    @Patch("/update/{id}")
     @Security("jwt",["game:create"])
     public async updateMove(
       @Path() id: number,

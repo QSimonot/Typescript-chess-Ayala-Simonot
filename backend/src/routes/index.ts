@@ -62,6 +62,7 @@ const models: TsoaRoute.Models = {
             "winner": {"ref":"UserOutputDTO","required":true},
             "hidden": {"dataType":"boolean","required":true},
             "ranked": {"dataType":"boolean","required":true},
+            "move": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -102,6 +103,7 @@ const models: TsoaRoute.Models = {
             "winner": {"dataType":"double","required":true},
             "hidden": {"dataType":"boolean","required":true},
             "ranked": {"dataType":"boolean","required":true},
+            "move": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -115,6 +117,7 @@ const models: TsoaRoute.Models = {
             "winner_id": {"dataType":"double"},
             "hidden": {"dataType":"boolean"},
             "ranked": {"dataType":"boolean"},
+            "move": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -455,7 +458,7 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.patch('/moves/:id',
+        app.patch('/moves/update/:id',
             authenticateMiddleware([{"jwt":["game:create"]}]),
             ...(fetchMiddlewares<RequestHandler>(MoveController)),
             ...(fetchMiddlewares<RequestHandler>(MoveController.prototype.updateMove)),
@@ -662,6 +665,38 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'deleteGame',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.patch('/games/update/move/:id',
+            authenticateMiddleware([{"jwt":["game:write"]}]),
+            ...(fetchMiddlewares<RequestHandler>(GameController)),
+            ...(fetchMiddlewares<RequestHandler>(GameController.prototype.addMove)),
+
+            async function GameController_addMove(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"double"},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"GameInputPatchDTO"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new GameController();
+
+              await templateService.apiHandler({
+                methodName: 'addMove',
                 controller,
                 response,
                 next,
