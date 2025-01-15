@@ -29,3 +29,8 @@ jobs:
     - run : cd backend/
     - run : npm run generate
     - run: npm run build 
+    - run : npm run dev
+    - run : cd ../front/
+    - run : npm run build
+    - run : npm run dev
+    
