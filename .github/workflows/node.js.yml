@@ -30,6 +30,7 @@ jobs:
       working-directory : ./backend
       run : |
             npm ci
+            npm init @eslint/config@latest
             npm run generate
             npm run build 
     
