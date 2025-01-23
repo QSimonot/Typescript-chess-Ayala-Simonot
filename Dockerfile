@@ -1,5 +1,5 @@
 FROM node:latest
-WORKDIR /backend/
+WORKDIR /backend
 
 COPY . .
 
