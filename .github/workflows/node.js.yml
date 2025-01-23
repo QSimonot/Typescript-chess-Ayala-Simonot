@@ -36,6 +36,6 @@ jobs:
     -  name : eslint and typecheck
        working-directory : ./backend
        run : |
-             npm run lint 
+             npx eslint /*
 
 
