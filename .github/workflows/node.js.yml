@@ -40,4 +40,4 @@ jobs:
     - name : docker
       working-directory : /
       run : | 
-            docker build
+            docker build .
