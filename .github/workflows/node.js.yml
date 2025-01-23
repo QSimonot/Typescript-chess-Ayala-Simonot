@@ -34,3 +34,9 @@ jobs:
             npm run build 
 
     -  name : eslint and typecheck
+       working-directory : ./backend
+       run : |
+             npm init @eslint/config@latest
+             npx eslint /*
+
+
