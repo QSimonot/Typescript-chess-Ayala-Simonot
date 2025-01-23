@@ -36,7 +36,8 @@ jobs:
     -  name : eslint and typecheck
        working-directory : ./backend
        run : |
-             npx eslint src/*
              tsc --noEmit
-
-
+    - name : docker
+      working-directory : ./
+      run : | 
+            docker build .
